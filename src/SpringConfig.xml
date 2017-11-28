@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+	<bean id="invoker" class="com.myprojects.commands.invoker.RemoteRequestor">
+		<property name="onCommands">
+			<list>
+				<ref bean="cielingFanOnCommand" />
+			</list>
+		</property>
+		<property name="offCommands">
+			<list>
+				<ref bean="cielingFanOffCommand" />
+			</list>
+		</property>
+	</bean>
+	<bean id="cielingFanOffCommand" class="com.myprojects.commands.CielingFanOff">
+		<property name="cielingFan" ref="cielingFanReciever"></property>
+	</bean>
+	<bean id="cielingFanOnCommand" class="com.myprojects.commands.CielingFanOn">
+		<property name="cielingFan" ref="cielingFanReciever"></property>
+	</bean>
+	<bean id="cielingFanReciever" class="com.myprojects.receiver.CielingFan">
+		<constructor-arg value="OFF"></constructor-arg>
+	</bean>
+	<bean id="lightOnKitchen" class=""></bean>
+	<bean id="lightOnGarden" class=""></bean>
+	<bean id="lightOnRoom" class=""></bean>
+</beans>
