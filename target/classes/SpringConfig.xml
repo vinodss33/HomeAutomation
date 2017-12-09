@@ -6,14 +6,20 @@
 		<property name="onCommands">
 			<list>
 				<ref bean="cielingFanOnCommand" />
+				<ref bean="lightOnKitchen" />
+				<ref bean="lightOnGarden" />
+				<ref bean="lightOnRoom" />
 			</list>
 		</property>
 		<property name="offCommands">
 			<list>
 				<ref bean="cielingFanOffCommand" />
+				
 			</list>
 		</property>
 	</bean>
+	
+	<!-- bean configuration for Fan object -->
 	<bean id="cielingFanOffCommand" class="com.myprojects.commands.CielingFanOff">
 		<property name="cielingFan" ref="cielingFanReciever"></property>
 	</bean>
@@ -23,7 +29,16 @@
 	<bean id="cielingFanReciever" class="com.myprojects.receiver.CielingFan">
 		<constructor-arg value="OFF"></constructor-arg>
 	</bean>
-	<bean id="lightOnKitchen" class=""></bean>
-	<bean id="lightOnGarden" class=""></bean>
-	<bean id="lightOnRoom" class=""></bean>
+
+	<!-- Bean Configuration for Light object -->
+	<bean id="light" class="com.myprojects.receiver.Light" abstract="true"></bean>
+	<bean id="lightOnKitchen" class="com.myprojects.receiver.KitchenLight"
+		parent="light"></bean>
+	<bean id="lightOnGarden" class="com.myprojects.receiver.GardenLight"
+		parent="light"></bean>
+	<bean id="lightOnRoom" class="com.myprojects.receiver.BedroomLight"
+		parent="light">
+		<property name="intensity" value="OFF"></property>
+	</bean>
+
 </beans>

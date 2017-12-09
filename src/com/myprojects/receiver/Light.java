@@ -10,6 +10,7 @@ public abstract class Light {
 	public abstract void lightOn();
 
 	public void lightOff() {
-		System.out.println("Light Off");
+		System.out.println(this.getClass().getName()+" are Turned Off");
 	}
+	
 }
