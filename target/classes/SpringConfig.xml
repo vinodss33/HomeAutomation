@@ -6,19 +6,22 @@
 		<property name="onCommands">
 			<list>
 				<ref bean="cielingFanOnCommand" />
-				<ref bean="lightOnKitchen" />
-				<ref bean="lightOnGarden" />
-				<ref bean="lightOnRoom" />
+				<ref bean="kitchenLightOnCommand" />
+				<ref bean="bedroomLightOnCommand" />
+				<ref bean="gardenLightOnCommand" />
 			</list>
 		</property>
 		<property name="offCommands">
 			<list>
 				<ref bean="cielingFanOffCommand" />
-				
+				<ref bean="kitchenLightOffCommand" />
+				<ref bean="bedroomLightOffCommand" />
+				<ref bean="gardenLightOffCommand" />
+
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- bean configuration for Fan object -->
 	<bean id="cielingFanOffCommand" class="com.myprojects.commands.CielingFanOff">
 		<property name="cielingFan" ref="cielingFanReciever"></property>
@@ -31,6 +34,30 @@
 	</bean>
 
 	<!-- Bean Configuration for Light object -->
+	<!--Kitchen Light Command configuration with Actual worker object -->
+	<bean id="kitchenLightOnCommand" class="com.myprojects.commands.LightCommandOn">
+		<constructor-arg ref="lightOnKitchen"></constructor-arg>
+	</bean>
+	<bean id="kitchenLightOffCommand" class="com.myprojects.commands.LightCommandOff">
+		<constructor-arg ref="lightOnKitchen"></constructor-arg>
+	</bean>
+
+	<!-- Bedroom light command configuration with actual worker object -->
+	<bean id="bedroomLightOnCommand" class="com.myprojects.commands.LightCommandOn">
+		<constructor-arg ref="lightOnRoom"></constructor-arg>
+	</bean>
+	<bean id="bedroomLightOffCommand" class="com.myprojects.commands.LightCommandOff">
+		<constructor-arg ref="lightOnRoom"></constructor-arg>
+	</bean>
+
+	<!-- Garden Light configuration with actual object -->
+	<bean id="gardenLightOnCommand" class="com.myprojects.commands.LightCommandOn">
+		<constructor-arg ref="lightOnGarden"></constructor-arg>
+	</bean>
+	<bean id="gardenLightOffCommand" class="com.myprojects.commands.LightCommandOff">
+		<constructor-arg ref="lightOnGarden"></constructor-arg>
+	</bean>
+
 	<bean id="light" class="com.myprojects.receiver.Light" abstract="true"></bean>
 	<bean id="lightOnKitchen" class="com.myprojects.receiver.KitchenLight"
 		parent="light"></bean>
