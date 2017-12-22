@@ -9,6 +9,9 @@
 				<ref bean="kitchenLightOnCommand" />
 				<ref bean="bedroomLightOnCommand" />
 				<ref bean="gardenLightOnCommand" />
+				<ref bean="houseDoorOpenCommand"/>
+				<ref bean="gardenDoorOpenCommand"/>
+				<ref bean="garageDoorOpenCommand"/>
 			</list>
 		</property>
 		<property name="offCommands">
@@ -17,6 +20,9 @@
 				<ref bean="kitchenLightOffCommand" />
 				<ref bean="bedroomLightOffCommand" />
 				<ref bean="gardenLightOffCommand" />
+				<ref bean="houseDoorClosedCommand" />
+				<ref bean="gardenDoorClosedCommand" />
+				<ref bean="garageDoorClosedCommand" />
 
 			</list>
 		</property>
@@ -67,5 +73,39 @@
 		parent="light">
 		<property name="intensity" value="OFF"></property>
 	</bean>
+
+
+	<!-- Door configuration -->
+
+	<bean id="houseDoorClosedCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="houseDoor"></constructor-arg>
+	</bean>
+	<bean id="houseDoorOpenCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="houseDoor"></constructor-arg>
+	</bean>
+
+	<bean id="gardenDoorClosedCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="gardenDoor"></constructor-arg>
+	</bean>
+	<bean id="gardenDoorOpenCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="gardenDoor"></constructor-arg>
+	</bean>
+
+	<bean id="garageDoorClosedCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="garageDoor"></constructor-arg>
+	</bean>
+	<bean id="garageDoorOpenCommand" class="com.myprojects.commands.DoorCloseCommand">
+		<constructor-arg ref="garageDoor"></constructor-arg>
+	</bean>
+
+	<bean id="door" class="com.myprojects.receiver.Door" abstract="true"></bean>
+	<bean id="houseDoor" class="com.myprojects.receiver.HouseDoor"
+		parent="door"></bean>
+
+	<bean id="gardenDoor" class="com.myprojects.receiver.GardenDoor"
+		parent="door"></bean>
+
+	<bean id="garageDoor" class="com.myprojects.receiver.GarageDoor"
+		parent="door"></bean>
 
 </beans>

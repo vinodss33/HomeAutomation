@@ -1,11 +1,10 @@
 package com.myprojects.receiver;
 
-public class GarageDoor {
-	public void close() {
-		System.out.println("Door closed");
-	}
+public class GarageDoor extends Door {
 
-	public void open() {
-		System.out.println("Door Opened");
+	@Override
+	public void openDoor() {
+		System.out.println("Garage Door Opened park/take your vehicle!!!");
+
 	}
 }
